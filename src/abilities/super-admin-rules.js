@@ -9,13 +9,11 @@ const rulesForActions = (user) => {
     can,
     cannot
   } = AbilityBuilder.extract();
-  can('create', 'roles');
+  can('create', 'all');
   // Use the model names to define the subject name
-  can('create', 'accountTypes');
-  can('manage', 'roles');
-  can('manage', 'accountTypes');
-  can('read', 'roles');
-  can('read', 'accountTypes');
+  can('manage', 'all');
+  // Reading authorization
+  can('read', 'all');
   return rules;
 };
 
@@ -25,13 +23,10 @@ const rulesForFields = (user) => {
     can,
     cannot
   } = AbilityBuilder.extract();
-  can('read', 'roles');
-  can('read', 'accountTypes');
-  can('manage', 'roles');
-  can('manage', 'accountTypes');
+  can('read', 'all');
+  can('manage', 'all');
   // Fields to pick when creating and updating
-  can(['create', 'read'], 'roles', ['name']);
-  can(['create', 'read'], 'accountTypes', ['name', 'published']);
+  can('create', 'all');
   return rules;
 };
 

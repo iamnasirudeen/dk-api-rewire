@@ -26,7 +26,7 @@ const moduleExports = createLogger({
     new transports.Console(),
     new transports.MongoDB({
       level: 'debug',
-      db: 'mongodb://localhost:27017/dating_kinky_api'
+      db: 'mongodb://super:UmIttuvreonCad1@ds117858.mlab.com:17858/dating_kinky_api'
     })
   ],
   // !end

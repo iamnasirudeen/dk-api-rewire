@@ -1,6 +1,6 @@
 {
   "host": "https://dk-api-rewire.herokuapp.com/",
   "port": 3030,
-  "public": "../public/dist",
+  "public": "../public",
   "mongodb": "mongodb://super:manunited@1483@ds117858.mlab.com:17858/dating_kinky_api"
 }

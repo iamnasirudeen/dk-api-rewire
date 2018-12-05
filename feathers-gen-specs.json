@@ -1,0 +1,125 @@
+{
+  "options": {
+    "ver": "1.0.0",
+    "inspectConflicts": false,
+    "semicolons": true,
+    "freeze": [
+      "logger.js"
+    ],
+    "ts": false
+  },
+  "app": {
+    "environmentsAllowingSeedData": "test",
+    "seedData": true,
+    "name": "dating-kinky-api",
+    "description": "API for datingkinky.com",
+    "src": "src",
+    "packager": "yarn@>= 0.18.0",
+    "providers": [
+      "rest",
+      "socketio"
+    ]
+  },
+  "services": {
+    "history": {
+      "name": "history",
+      "nameSingular": "history",
+      "subFolder": "base",
+      "fileName": "history",
+      "adapter": "mongoose",
+      "path": "/history",
+      "isAuthEntity": false,
+      "graphql": false
+    },
+    "accountTypes": {
+      "name": "accountTypes",
+      "nameSingular": "accountType",
+      "subFolder": "account",
+      "fileName": "account-types",
+      "adapter": "mongoose",
+      "path": "/account-types",
+      "isAuthEntity": false,
+      "graphql": true,
+      "requiresAuth": false
+    },
+    "roles": {
+      "name": "roles",
+      "nameSingular": "role",
+      "subFolder": "account",
+      "fileName": "roles",
+      "adapter": "mongoose",
+      "path": "/roles",
+      "isAuthEntity": false,
+      "graphql": true
+    },
+    "users": {
+      "name": "users",
+      "nameSingular": "user",
+      "subFolder": "account",
+      "fileName": "users",
+      "adapter": "mongoose",
+      "path": "/users",
+      "isAuthEntity": true,
+      "graphql": true,
+      "requiresAuth": true
+    }
+  },
+  "hooks": {
+    "log-to-history": {
+      "fileName": "log-to-history",
+      "camelName": "logToHistory",
+      "ifMulti": "y",
+      "multiServices": [
+        "*app"
+      ],
+      "singleService": ""
+    },
+    "prevent-history-mutation": {
+      "fileName": "prevent-history-mutation",
+      "camelName": "preventHistoryMutation",
+      "ifMulti": "n",
+      "multiServices": [],
+      "singleService": "history"
+    },
+    "authorize-action": {
+      "fileName": "authorize-action",
+      "camelName": "authorizeAction",
+      "ifMulti": "y",
+      "multiServices": [
+        "*app"
+      ],
+      "singleService": ""
+    },
+    "authenticate": {
+      "fileName": "authenticate",
+      "camelName": "authenticate",
+      "ifMulti": "y",
+      "multiServices": [
+        "*app"
+      ],
+      "singleService": ""
+    },
+    "escape-auth-check": {
+      "fileName": "escape-auth-check",
+      "camelName": "escapeAuthCheck",
+      "ifMulti": "y",
+      "multiServices": [
+        "*app"
+      ],
+      "singleService": ""
+    }
+  },
+  "connections": {
+    "mongoose": {
+      "database": "mongodb",
+      "adapter": "mongoose",
+      "connectionString": "mongodb://localhost:27017/dating_kinky_api"
+    }
+  },
+  "authentication": {
+    "strategies": [
+      "local"
+    ],
+    "entity": "users"
+  }
+}

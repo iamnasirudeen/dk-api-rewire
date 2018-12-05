@@ -1,0 +1,99 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Users Basic User should update, patch, delete account 1`] = `
+Array [
+  "_id",
+  "username",
+  "email",
+  "dateOfBirth",
+  "roleId",
+  "accountTypeId",
+  "fosta",
+  "deletedAt",
+  "updatedAt",
+  "createdAt",
+]
+`;
+
+exports[`Users Basic User should update, patch, delete account 2`] = `
+Array [
+  "_id",
+  "username",
+  "email",
+  "dateOfBirth",
+  "roleId",
+  "accountTypeId",
+  "fosta",
+  "deletedAt",
+  "updatedAt",
+  "createdAt",
+]
+`;
+
+exports[`Users Basic User should update, patch, delete account 3`] = `
+Array [
+  "_id",
+  "username",
+  "email",
+  "dateOfBirth",
+  "roleId",
+  "accountTypeId",
+  "fosta",
+  "deletedAt",
+  "updatedAt",
+  "createdAt",
+]
+`;
+
+exports[`Users Users Moderator should delete other users 1`] = `
+Array [
+  "username",
+  "email",
+  "dateOfBirth",
+  "ip",
+  "roleId",
+  "accountTypeId",
+  "fosta",
+  "deletedAt",
+  "_id",
+  "updatedAt",
+  "createdAt",
+  "__v",
+]
+`;
+
+exports[`Users Users Moderator should update other users 1`] = `
+Array [
+  "username",
+  "email",
+  "dateOfBirth",
+  "ip",
+  "roleId",
+  "accountTypeId",
+  "fosta",
+  "deletedAt",
+  "_id",
+  "updatedAt",
+  "createdAt",
+  "__v",
+]
+`;
+
+exports[`Users should be throw when data is not valid 1`] = `
+Object {
+  "className": "bad-request",
+  "code": 400,
+  "data": Object {},
+  "errors": Array [
+    "should have required property 'username'",
+    "should have required property 'email'",
+    "should have required property 'password'",
+    "should have required property 'dateOfBirth'",
+    "should have required property 'roleId'",
+    "should have required property 'accountTypeId'",
+    "should have required property 'fosta'",
+  ],
+  "message": "Data does not match schema",
+  "name": "BadRequest",
+}
+`;

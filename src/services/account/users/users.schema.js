@@ -1,0 +1,134 @@
+
+// Define the Feathers schema for service `users`. (Can be re-generated.)
+// !code: imports // !end
+// !code: init // !end
+
+// Define the model using JSON-schema
+let schema = {
+  // !<DEFAULT> code: schema_header
+  title: 'Users',
+  description: 'Users database.',
+  // !end
+  // !code: schema_definitions // !end
+
+  // Required fields.
+  required: [
+    // !code: schema_required
+    'username',
+    'email',
+    'password',
+    'roleId',
+    'accountTypeId',
+    'fosta',
+    'dateOfBirth'
+    // !end
+  ],
+  // Fields with unique values.
+  uniqueItemProperties: [
+    // !code: schema_unique
+    'username',
+    'email'
+    // !end
+  ],
+
+  // Fields in the model.
+  properties: {
+    // !code: schema_properties
+    username: {
+      minLength: 4,
+      maxLength: 10,
+      faker: 'internet.userName'
+    },
+    email: {
+      format: 'email',
+      faker: 'internet.email'
+    },
+    password: {
+      faker: 'internet.password',
+      minLength: 5
+    },
+    dateOfBirth: {
+      format: 'date'
+    },
+    ip: {
+      format: 'ipv4',
+      faker: 'internet.ip'
+    },
+    roleId: {
+      ref: 'roles',
+      faker: {
+        fk: 'roles:random'
+      }
+    },
+    accountTypeId: {
+      ref: 'accountTypes',
+      faker: {
+        fk: 'accountTypes:random'
+      }
+    },
+    fosta: {
+      type: 'boolean',
+      chance: {
+        bool: {
+          likelihood: 65
+        }
+      }
+    },
+    deletedAt: {
+      type: 'number',
+      chance: {
+        integer: {
+          min: -1,
+          max: -1
+        }
+      }
+    }
+    // !end
+  },
+  // !code: schema_more // !end
+};
+
+// Define optional, non-JSON-schema extensions.
+let extensions = {
+  // GraphQL generation.
+  graphql: {
+    // !code: graphql_header
+    name: 'User',
+    service: {
+      sort: {
+        _id: 1
+      },
+    },
+    // sql: {
+    //   sqlTable: 'Users',
+    //   uniqueKey: '_id',
+    //   sqlColumn: {
+    //     __authorId__: '__author_id__',
+    //   },
+    // },
+    // !end
+    discard: [
+      // !code: graphql_discard // !end
+    ],
+    add: {
+      // !<DEFAULT> code: graphql_add
+      // __author__: { type: '__User__!', args: false, relation: { ourTable: '__authorId__', otherTable: '_id' } },
+      // !end
+    },
+    // !code: graphql_more // !end
+  },
+};
+
+// !code: more // !end
+
+let moduleExports = {
+  schema,
+  extensions,
+  // !code: moduleExports // !end
+};
+
+// !code: exports // !end
+module.exports = moduleExports;
+
+// !code: funcs // !end
+// !code: end // !end

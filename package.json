@@ -1,0 +1,79 @@
+{
+  "name": "dating-kinky-api",
+  "description": "API for datingkinky.com",
+  "version": "0.0.0",
+  "homepage": "",
+  "main": "src",
+  "keywords": [
+    "feathers"
+  ],
+  "author": {
+    "name": "Aleem Isiaka",
+    "email": "aleemisiaka@gmail.com"
+  },
+  "contributors": [],
+  "bugs": {},
+  "directories": {
+    "lib": "src",
+    "test": "test/"
+  },
+  "engines": {
+    "node": "^10.0.0",
+    "yarn": ">= 0.18.0"
+  },
+  "scripts": {
+    "jest": "jest -i --forceExit",
+    "test:jest": "NODE_ENV=test npm run jest",
+    "jest:watch": "jest -i --watch",
+    "test:all": "yarn run eslint && NODE_ENV=test npm run jest",
+    "test:dev": "yarn run eslint && NODE_ENV=test npm run jest:watch",
+    "eslint": "eslint src/. __tests__/. --config .eslintrc.json",
+    "dev": "NODE_ENV=development nodemon src/",
+    "start": "node src/",
+    "start:seed": "NODE_ENV=test node src/ --seed",
+    "mocha": "mocha test/ --recursive --exit --timeout 10000"
+  },
+  "dependencies": {
+    "@casl/ability": "^2.5.1",
+    "@casl/mongoose": "^2.2.2",
+    "@feathers-plus/test-utils": "^0.3.5",
+    "@feathersjs/authentication": "^2.1.7",
+    "@feathersjs/authentication-jwt": "^2.0.1",
+    "@feathersjs/authentication-local": "^1.2.1",
+    "@feathersjs/configuration": "^2.0.0",
+    "@feathersjs/errors": "^3.3.0",
+    "@feathersjs/express": "^1.2.3",
+    "@feathersjs/feathers": "^3.2.3",
+    "@feathersjs/socketio": "^3.2.2",
+    "ajv": "5.5.2",
+    "capitalize": "^2.0.0",
+    "casl": "^1.1.0",
+    "compression": "^1.7.3",
+    "cors": "^2.8.4",
+    "crypto-random-string": "^1.0.0",
+    "expect": "^23.6.0",
+    "feathers-hooks-common": "^4.16.3",
+    "feathers-mongoose": "^6.1.4",
+    "helmet": "^3.13.0",
+    "lodash": "^4.17.11",
+    "lodash.merge": "^4.6.1",
+    "mongodb-core": "^3.1.9",
+    "mongoose": "^5.3.14",
+    "request-promise": "^4.2.2",
+    "serve-favicon": "^2.5.0",
+    "url": "^0.11.0",
+    "winston": "^3.0.0",
+    "winston-mongodb": "^4.0.3"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-jest": "^23.6.0",
+    "eslint": "^5.3.0",
+    "eslint-plugin-prettier": "^3.0.0",
+    "jest": "^23.6.0",
+    "mocha": "^5.2.0",
+    "nodemon": "^1.18.3",
+    "regenerator-runtime": "^0.13.1",
+    "request": "^2.88.0"
+  }
+}

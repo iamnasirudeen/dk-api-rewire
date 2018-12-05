@@ -1,4 +1,84 @@
 {
-  "host": "dating-kinky-api-app.feathersjs.com",
-  "port": "PORT"
+  "host": "https://dk-api-rewire.herokuapp.com/",
+  "port": 3030,
+  "public": "../public/",
+  "paginate": {
+    "default": 10,
+    "max": 50
+  },
+  "testPort": 4040,
+  "supportedDevices": [
+    "mobile-android",
+    "mobile-ios",
+    "mobile-browser",
+    "desktop",
+    "generic"
+  ],
+  "unsetErrorKey": "unsetErrorToResult",
+  "supportedRoles": [
+    {
+      "name": "Super Admin"
+    },
+    {
+      "name": "Admin"
+    },
+    {
+      "name": "Users Moderator"
+    },
+    {
+      "name": "Posts Moderator"
+    },
+    {
+      "name": "Media Moderator"
+    },
+    {
+      "name": "Basic User"
+    }
+  ],
+  "supportedAccountTypes": [
+    {
+      "name": "Admin",
+      "published": true
+    },
+    {
+      "name": "Moderator",
+      "published": true
+    },
+    {
+      "name": "Individual",
+      "published": true
+    },
+    {
+      "name": "Couple/Group",
+      "published": true
+    }
+  ],
+  "unProtectedPaths": ["api-keys"],
+  "trustedSources": ["postman", "test"],
+  "idempotentKey": "actionId",
+  "tests": {
+    "environmentsAllowingSeedData": ["test"]
+  },
+  "mongodb": "mongodb://ds117858.mlab.com:17858/dating_kinky_api",
+  "authentication": {
+    "secret": "8d870ae051f76182892cc7968902edec4413507aeca54088e524cf568bd5b4ceff9b633449cffedc6bab40d1af65922c8691702d693cf011f97db3da16a474759740db58cee3f9235bceb9a1ad0ab7158b6f03bdec1f366c8882a15449c58e833eb90af50bf766e8834af27d6fa49c9b75cfccb3e9aaab32af61f7a58236960e51c3237e2709d34cb5fd913533de75103d148c7d556822b7d2b2c4aa5c178bc178a47fa1bd135d09ee7ee21729573767a34889d433fb48b9e85b25e827c454e0ca0dd1b7a7ded2f90f8cbff1afb7a2f0c997467cefd6f3f5cba55be8dbc8c4470a7333895e3cd4f37fe925355e23032705235821069b95ba115132134ddca567",
+    "strategies": ["jwt", "local"],
+    "path": "/authentication",
+    "service": "users",
+    "jwt": {
+      "header": {
+        "typ": "access"
+      },
+      "audience": "https://yourdomain.com",
+      "subject": "anonymous",
+      "issuer": "feathers",
+      "algorithm": "HS256",
+      "expiresIn": "1d"
+    },
+    "local": {
+      "entity": "user",
+      "usernameField": "email",
+      "passwordField": "password"
+    }
+  }
 }

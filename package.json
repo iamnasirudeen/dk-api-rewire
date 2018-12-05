@@ -29,7 +29,7 @@
     "test:dev": "yarn run eslint && NODE_ENV=test npm run jest:watch",
     "eslint": "eslint src/. __tests__/. --config .eslintrc.json",
     "dev": "NODE_ENV=development nodemon src/",
-    "start": "node src/",
+    "start": "NODE_ENV=production node src/",
     "start:seed": "NODE_ENV=test node src/ --seed",
     "mocha": "mocha test/ --recursive --exit --timeout 10000"
   },

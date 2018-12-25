@@ -1,5 +1,5 @@
 const config = require("config");
-const redisURL = config.get("redisURL");
+const redisURL = process.env.HEROKU_REDIS_CHARCOAL_URL || config.get("redisURL");
 let siteURL = config.get("host");
 let port = config.get("port");
 const AWS = require("aws-sdk");

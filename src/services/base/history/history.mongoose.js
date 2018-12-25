@@ -1,22 +1,18 @@
-
 /* eslint quotes: 0 */
 // Defines Mongoose model for service `history`. (Can be re-generated.)
-const merge = require('lodash.merge');
+const merge = require("lodash.merge");
 // eslint-disable-next-line no-unused-vars
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 // !code: imports // !end
 // !code: init // !end
 
-let moduleExports = merge({},
+let moduleExports = merge(
+  {},
   // !<DEFAULT> code: model
   {
     type: {
       type: String,
-      enum: [
-        "before",
-        "after",
-        "error"
-      ],
+      enum: ["before", "after", "error"],
       required: true
     },
     path: {
@@ -25,20 +21,13 @@ let moduleExports = merge({},
     },
     method: {
       type: String,
-      enum: [
-        "find",
-        "get",
-        "create",
-        "update",
-        "patch",
-        "remove"
-      ],
+      enum: ["find", "get", "create", "update", "patch", "remove"],
       required: true
     },
     meta: {},
     user: {},
     provider: String
-  },
+  }
   // !end
   // !code: moduleExports // !end
 );

@@ -1,13 +1,13 @@
-
 /* eslint quotes: 0 */
 // Defines Mongoose model for service `accountTypes`. (Can be re-generated.)
-const merge = require('lodash.merge');
+const merge = require("lodash.merge");
 // eslint-disable-next-line no-unused-vars
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 // !code: imports // !end
 // !code: init // !end
 
-let moduleExports = merge({},
+let moduleExports = merge(
+  {},
   // !<DEFAULT> code: model
   {
     name: {
@@ -15,12 +15,13 @@ let moduleExports = merge({},
       required: true,
       unique: true
     },
+    displayOrder: Number,
     published: {
       type: Boolean,
       required: true
     },
     deletedAt: Number
-  },
+  }
   // !end
   // !code: moduleExports // !end
 );

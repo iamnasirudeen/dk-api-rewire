@@ -1,51 +1,54 @@
 /* eslint no-console: 0 */
-const {
-  join
-} = require('path');
-const {
-  readJsonFileSync
-} = require('@feathers-plus/test-utils');
-const config = require('../config/default.json');
+const { join } = require("path");
+const { readJsonFileSync } = require("@feathers-plus/test-utils");
 
 // !code: imports // !end
 
 // Determine if command line argument exists for seeding data
-let ifSeedServices = ['--seed', '-s'].some(str => process.argv.slice(2).includes(str));
+let ifSeedServices = ["--seed", "-s"].some(str =>
+  process.argv.slice(2).includes(str)
+);
 
 // Determine if environment allows test to mutate existing DB data.
-let env = (config.tests || {}).environmentsAllowingSeedData || [];
-let ifDbChangesAllowed = env.includes(process.env.NODE_ENV);
+function areDbChangesAllowed(testConfig) {
+  let { environmentsAllowingSeedData = [] } = testConfig;
+  return environmentsAllowingSeedData.includes(process.env.NODE_ENV);
+}
 
 // Get generated fake data
-let fakeData = readJsonFileSync(join(__dirname, '../seeds/fake-data.json')) || {};
+let fakeData =
+  readJsonFileSync(join(__dirname, "../seeds/fake-data.json")) || {};
 
 // Get generated services
-let services = (readJsonFileSync(join(__dirname, '../feathers-gen-specs.json')) || {}).services;
+let services = (
+  readJsonFileSync(join(__dirname, "../feathers-gen-specs.json")) || {}
+).services;
 // !code: init // !end
 
-module.exports = async function (app) {
+module.exports = async function(app) {
+  const ifDbChangesAllowed = areDbChangesAllowed(app.get("tests"));
   // !code: func_init // !end
   if (!ifSeedServices) return;
   if (!ifDbChangesAllowed) return;
 
   if (!Object.keys(fakeData).length) {
-    console.log('Cannot seed services as seed/fake-data.json doesn\'t have seed data.');
+    console.log(
+      "Cannot seed services as seed/fake-data.json doesn't have seed data."
+    );
     return;
   }
   if (!services || !Object.keys(services).length) {
-    console.log('Cannot seed services as feathers-gen-specs.json has no services.');
+    console.log(
+      "Cannot seed services as feathers-gen-specs.json has no services."
+    );
     return;
   }
 
   for (const serviceName in services) {
     if (services.hasOwnProperty(serviceName)) {
-      const {
-        name,
-        adapter,
-        path
-      } = services[serviceName];
+      const { name, adapter, path } = services[serviceName];
       // !<DEFAULT> code: seed_select
-      const doSeed = adapter !== 'generic';
+      const doSeed = adapter !== "generic";
       // !end
 
       if (doSeed) {
@@ -56,13 +59,22 @@ module.exports = async function (app) {
             // !<DEFAULT> code: seed_try
             const deleted = await service.remove(null);
             const result = await service.create(fakeData[name]);
-            console.log(`Seeded service ${name} on path ${path} deleting ${deleted.length} records, adding ${result.length}.`);
+            console.log(
+              `Seeded service ${name} on path ${path} deleting ${
+                deleted.length
+              } records, adding ${result.length}.`
+            );
             // !end
           } catch (err) {
-            console.log(`Error on seeding service ${name} on path ${path}`, err.message);
+            console.log(
+              `Error on seeding service ${name} on path ${path}`,
+              err.message
+            );
           }
         } else {
-          console.log(`Not seeding service ${name} on path ${path}. No seed data.`);
+          console.log(
+            `Not seeding service ${name} on path ${path}. No seed data.`
+          );
         }
       } else {
         console.log(`Not seeding generic service ${name} on path ${path}.`);

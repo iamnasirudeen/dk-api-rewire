@@ -8,7 +8,7 @@ const {
   validateCreate,
   validateUpdate,
   validatePatch
-} = require('./roles.validate');
+} = require("./roles.validate");
 // !end
 
 // !code: init // !end
@@ -48,7 +48,7 @@ let moduleExports = {
     patch: [],
     remove: []
     // !end
-  },
+  }
   // !code: moduleExports // !end
 };
 

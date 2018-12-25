@@ -1,11 +1,11 @@
-
 /* eslint quotes: 0 */
 // Defines the MongoDB $jsonSchema for service `users`. (Can be re-generated.)
-const merge = require('lodash.merge');
+const merge = require("lodash.merge");
 // !code: imports // !end
 // !code: init // !end
 
-let moduleExports = merge({},
+let moduleExports = merge(
+  {},
   // !<DEFAULT> code: model
   {
     bsonType: "object",
@@ -39,19 +39,26 @@ let moduleExports = merge({},
         faker: "internet.ip",
         bsonType: "string"
       },
-      roleId: {
+      role: {
         ref: "roles",
         faker: {
           fk: "roles:random"
         },
-        bsonType: "string"
+        bsonType: "objectId"
       },
-      accountTypeId: {
+      emailConfirm: {
+        ref: "emailConfirmation",
+        faker: {
+          fk: "emailConfirmation:random"
+        },
+        bsonType: "objectId"
+      },
+      accountType: {
         ref: "accountTypes",
         faker: {
           fk: "accountTypes:random"
         },
-        bsonType: "string"
+        bsonType: "objectId"
       },
       fosta: {
         chance: {
@@ -75,12 +82,13 @@ let moduleExports = merge({},
       "username",
       "email",
       "password",
-      "roleId",
-      "accountTypeId",
+      "role",
+      "emailConfirm",
+      "accountType",
       "fosta",
       "dateOfBirth"
     ]
-  },
+  }
   // !end
   // !code: moduleExports // !end
 );

@@ -1,4 +1,3 @@
-
 // Define the Feathers schema for service `roles`. (Can be re-generated.)
 // !code: imports // !end
 // !code: init // !end
@@ -6,21 +5,21 @@
 // Define the model using JSON-schema
 let schema = {
   // !<DEFAULT> code: schema_header
-  title: 'Roles',
-  description: 'Roles database.',
+  title: "Roles",
+  description: "Roles database.",
   // !end
   // !code: schema_definitions // !end
 
   // Required fields.
   required: [
     // !code: schema_required
-    'name'
+    "name"
     // !end
   ],
   // Fields with unique values.
   uniqueItemProperties: [
     // !code: schema_unique
-    'name'
+    "name"
     // !end
   ],
 
@@ -30,10 +29,11 @@ let schema = {
     name: {
       minLength: 3,
       maxLength: 15,
-      faker: 'lorem.word'
+      faker: "lorem.word"
     },
+    displayOrder: { type: "number" },
     deletedAt: {
-      type: 'number',
+      type: "number",
       chance: {
         integer: {
           min: -1,
@@ -42,7 +42,7 @@ let schema = {
       }
     }
     // !end
-  },
+  }
   // !code: schema_more // !end
 };
 
@@ -51,11 +51,11 @@ let extensions = {
   // GraphQL generation.
   graphql: {
     // !code: graphql_header
-    name: 'Role',
+    name: "Role",
     service: {
       sort: {
         _id: 1
-      },
+      }
     },
     // sql: {
     //   sqlTable: 'Roles',
@@ -72,16 +72,16 @@ let extensions = {
       // !<DEFAULT> code: graphql_add
       // __author__: { type: '__User__!', args: false, relation: { ourTable: '__authorId__', otherTable: '_id' } },
       // !end
-    },
+    }
     // !code: graphql_more // !end
-  },
+  }
 };
 
 // !code: more // !end
 
 let moduleExports = {
   schema,
-  extensions,
+  extensions
   // !code: moduleExports // !end
 };
 

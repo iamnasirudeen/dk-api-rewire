@@ -1,28 +1,26 @@
 // Application hooks that run for every service. (Can be re-generated.)
-const commonHooks = require('feathers-hooks-common');
+const commonHooks = require("feathers-hooks-common");
 // eslint-disable-next-line no-unused-vars
-const authenticate = require('./hooks/authenticate');
+const authenticate = require("./hooks/authenticate");
 // eslint-disable-next-line no-unused-vars
-const authorizeAction = require('./hooks/authorize-action');
+const authorizeAction = require("./hooks/authorize-action");
 // eslint-disable-next-line no-unused-vars
-const escapeAuthCheck = require('./hooks/escape-auth-check');
+const escapeAuthCheck = require("./hooks/escape-auth-check");
 // eslint-disable-next-line no-unused-vars
-const logToHistory = require('./hooks/log-to-history');
+const logToHistory = require("./hooks/log-to-history");
+// eslint-disable-next-line no-unused-vars
+const validateApiKey = require("./hooks/validate-api-key");
 // !<DEFAULT> code: imports
-const log = require('./hooks/log');
+const log = require("./hooks/log");
 // !end
 
 // !code: used
 // eslint-disable-next-line no-unused-vars
-const {
-  iff,
-  when,
-  isProvider
-} = commonHooks;
+const { iff, when, isProvider, softDelete2, discardQuery } = commonHooks;
 // !end
 // !code: init
 const shouldLogToHistory = () => {
-  return iff(isProvider('external'), logToHistory());
+  return iff(isProvider("external"), logToHistory());
 };
 
 const shouldAuthorizeAction = () => {
@@ -35,8 +33,14 @@ let moduleExports = {
     // !code: before
     all: [
       log(),
-      shouldLogToHistory(),
-      iff(isProvider('external'), shouldAuthorizeAction()),
+      iff(isProvider("external"), validateApiKey()),
+      discardQuery("apiKey"),
+      iff(isProvider("external"), shouldAuthorizeAction()),
+      iff(
+        isProvider("external"),
+        softDelete2({ skipProbeOnGet: true, keepOnCreate: true })
+      ),
+      shouldLogToHistory()
     ],
     find: [],
     get: [],
@@ -49,10 +53,7 @@ let moduleExports = {
 
   after: {
     // !code: after
-    all: [
-      log(),
-      shouldLogToHistory()
-    ],
+    all: [log(), shouldLogToHistory()],
     find: [],
     get: [],
     create: [],
@@ -64,10 +65,7 @@ let moduleExports = {
 
   error: {
     // !code: error
-    all: [
-      log(),
-      shouldLogToHistory()
-    ],
+    all: [log(), shouldLogToHistory()],
     find: [],
     get: [],
     create: [],
@@ -75,7 +73,7 @@ let moduleExports = {
     patch: [],
     remove: []
     // !end
-  },
+  }
   // !code: moduleExports // !end
 };
 

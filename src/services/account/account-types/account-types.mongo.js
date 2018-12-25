@@ -1,11 +1,11 @@
-
 /* eslint quotes: 0 */
 // Defines the MongoDB $jsonSchema for service `accountTypes`. (Can be re-generated.)
-const merge = require('lodash.merge');
+const merge = require("lodash.merge");
 // !code: imports // !end
 // !code: init // !end
 
-let moduleExports = merge({},
+let moduleExports = merge(
+  {},
   // !<DEFAULT> code: model
   {
     bsonType: "object",
@@ -19,6 +19,9 @@ let moduleExports = merge({},
         maxLength: 20,
         faker: "lorem.word",
         bsonType: "string"
+      },
+      displayOrder: {
+        bsonType: "number"
       },
       published: {
         chance: {
@@ -38,11 +41,8 @@ let moduleExports = merge({},
         bsonType: "number"
       }
     },
-    required: [
-      "name",
-      "published"
-    ]
-  },
+    required: ["name", "published"]
+  }
   // !end
   // !code: moduleExports // !end
 );

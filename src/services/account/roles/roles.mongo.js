@@ -1,11 +1,11 @@
-
 /* eslint quotes: 0 */
 // Defines the MongoDB $jsonSchema for service `roles`. (Can be re-generated.)
-const merge = require('lodash.merge');
+const merge = require("lodash.merge");
 // !code: imports // !end
 // !code: init // !end
 
-let moduleExports = merge({},
+let moduleExports = merge(
+  {},
   // !<DEFAULT> code: model
   {
     bsonType: "object",
@@ -20,6 +20,9 @@ let moduleExports = merge({},
         faker: "lorem.word",
         bsonType: "string"
       },
+      displayOrder: {
+        bsonType: "number"
+      },
       deletedAt: {
         chance: {
           integer: {
@@ -30,10 +33,8 @@ let moduleExports = merge({},
         bsonType: "number"
       }
     },
-    required: [
-      "name"
-    ]
-  },
+    required: ["name"]
+  }
   // !end
   // !code: moduleExports // !end
 );

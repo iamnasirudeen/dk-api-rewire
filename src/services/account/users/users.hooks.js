@@ -1,24 +1,31 @@
+// Hooks for service `optionValues`. (Can be re-generated.)
+const commonHooks = require("feathers-hooks-common");
 const {
   hashPassword,
   protect
-} = require('@feathersjs/authentication-local').hooks;
-const skipRemainingHooks = require('../../../hooks/skip-remaining-hooks');
-// !code: imports // !end
+} = require("@feathersjs/authentication-local").hooks;
+const skipRemainingHooks = require("../../../hooks/skip-remaining-hooks");
+// !code: imports
+const verifyUserCreateData = require("./hooks/verify-user-create-data");
+const createEmailConfirmation = require("./hooks/create-email-confirmation");
+// !end
 
 // !code: used
+const { ObjectID } = require("mongodb");
 // eslint-disable-next-line no-unused-vars
-// const {
-//   iff
-// } = commonHooks;
+const { mongoKeys } = commonHooks;
+
 // eslint-disable-next-line no-unused-vars
 const {
   validateCreate,
   validateUpdate,
   validatePatch
-} = require('./users.validate');
+} = require("./users.validate");
 // !end
 
-// !code: init // !end
+// !code: init
+const foreignKeys = ["_id", "accountType", "role"];
+// !end
 
 let moduleExports = {
   before: {
@@ -30,10 +37,15 @@ let moduleExports = {
     //   patch : hashPassword(), authenticate('jwt')
     //   remove: authenticate('jwt')
     // !code: before
-    all: [],
+    all: [mongoKeys(ObjectID, foreignKeys)],
     find: [],
     get: [],
-    create: [validateCreate(), hashPassword()],
+    create: [
+      createEmailConfirmation(),
+      validateCreate(),
+      verifyUserCreateData(),
+      hashPassword()
+    ],
     update: [skipRemainingHooks(), validateUpdate(), hashPassword()],
     patch: [validatePatch(), hashPassword()],
     remove: []
@@ -44,7 +56,7 @@ let moduleExports = {
     // Your hooks should include:
     //   all   : protect('password') /* Must always be the last hook */
     // !<DEFAULT> code: after
-    all: [protect('password') /* Must always be the last hook */ ],
+    all: [protect("password") /* Must always be the last hook */],
     find: [],
     get: [],
     create: [],
@@ -64,7 +76,7 @@ let moduleExports = {
     patch: [],
     remove: []
     // !end
-  },
+  }
   // !code: moduleExports // !end
 };
 

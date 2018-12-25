@@ -1,50 +1,34 @@
 /* eslint quotes: 0 */
 // Validation definitions for validateSchema hook for service `history`. (Can be re-generated.)
-const {
-  validateSchema
-} = require('feathers-hooks-common');
-const merge = require('lodash.merge');
-const ajv = require('ajv');
+const { validateSchema } = require("feathers-hooks-common");
+const merge = require("lodash.merge");
+const ajv = require("ajv");
 // !code: imports // !end
 // !code: init // !end
 
 // !<DEFAULT> code: set_id_type
 // eslint-disable-next-line no-unused-vars
-const ID = 'string';
+const ID = "string";
 // !end
 
-let base = merge({},
+let base = merge(
+  {},
   // !<DEFAULT> code: base
   {
     title: "History",
     description: "History database.",
-    required: [
-      "path",
-      "type",
-      "method"
-    ],
+    required: ["path", "type", "method"],
     uniqueItemProperties: [],
     properties: {
       type: {
-        enum: [
-          "before",
-          "after",
-          "error"
-        ],
+        enum: ["before", "after", "error"],
         type: "string"
       },
       path: {
         type: "string"
       },
       method: {
-        enum: [
-          "find",
-          "get",
-          "create",
-          "update",
-          "patch",
-          "remove"
-        ],
+        enum: ["find", "get", "create", "update", "patch", "remove"],
         type: "string"
       },
       meta: {
@@ -57,26 +41,28 @@ let base = merge({},
         type: "string"
       }
     }
-  },
+  }
   // !end
   // !code: base_more // !end
 );
 // !code: base_change // !end
 
-let create = merge({},
-  base,
+let create = merge(
+  {},
+  base
   // !code: create_more // !end
 );
 
-let update = merge({},
-  base,
+let update = merge(
+  {},
+  base
   // !code: update_more // !end
 );
 
-let patch = merge({},
-  base, {
-    required: undefined
-  },
+let patch = merge(
+  {},
+  base,
+  { required: undefined }
   // !code: patch_more // !end
 );
 // !code: all_change
@@ -103,26 +89,14 @@ let validatePatch = options => {
 
 let quickValidate = (method, data, options) => {
   try {
-    if (method === 'create') {
-      validateCreate(options)({
-        type: 'before',
-        method: 'create',
-        data
-      });
+    if (method === "create") {
+      validateCreate(options)({ type: "before", method: "create", data });
     }
-    if (method === 'update') {
-      validateCreate(options)({
-        type: 'before',
-        method: 'update',
-        data
-      });
+    if (method === "update") {
+      validateCreate(options)({ type: "before", method: "update", data });
     }
-    if (method === 'patch') {
-      validateCreate(options)({
-        type: 'before',
-        method: 'patch',
-        data
-      });
+    if (method === "patch") {
+      validateCreate(options)({ type: "before", method: "patch", data });
     }
   } catch (err) {
     return err;
@@ -137,7 +111,7 @@ let moduleExports = {
   validateCreate,
   validateUpdate,
   validatePatch,
-  quickValidate,
+  quickValidate
   // !code: moduleExports // !end
 };
 

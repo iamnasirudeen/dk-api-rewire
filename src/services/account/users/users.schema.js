@@ -1,4 +1,3 @@
-
 // Define the Feathers schema for service `users`. (Can be re-generated.)
 // !code: imports // !end
 // !code: init // !end
@@ -6,28 +5,29 @@
 // Define the model using JSON-schema
 let schema = {
   // !<DEFAULT> code: schema_header
-  title: 'Users',
-  description: 'Users database.',
+  title: "Users",
+  description: "Users database.",
   // !end
   // !code: schema_definitions // !end
 
   // Required fields.
   required: [
     // !code: schema_required
-    'username',
-    'email',
-    'password',
-    'roleId',
-    'accountTypeId',
-    'fosta',
-    'dateOfBirth'
+    "username",
+    "email",
+    "password",
+    "role",
+    "emailConfirm",
+    "accountType",
+    "fosta",
+    "dateOfBirth"
     // !end
   ],
   // Fields with unique values.
   uniqueItemProperties: [
     // !code: schema_unique
-    'username',
-    'email'
+    "username",
+    "email"
     // !end
   ],
 
@@ -37,37 +37,46 @@ let schema = {
     username: {
       minLength: 4,
       maxLength: 10,
-      faker: 'internet.userName'
+      faker: "internet.userName"
     },
     email: {
-      format: 'email',
-      faker: 'internet.email'
+      format: "email",
+      faker: "internet.email"
     },
     password: {
-      faker: 'internet.password',
+      faker: "internet.password",
       minLength: 5
     },
     dateOfBirth: {
-      format: 'date'
+      format: "date"
     },
     ip: {
-      format: 'ipv4',
-      faker: 'internet.ip'
+      format: "ipv4",
+      faker: "internet.ip"
     },
-    roleId: {
-      ref: 'roles',
+    role: {
+      ref: "roles",
+      type: "ID",
       faker: {
-        fk: 'roles:random'
+        fk: "roles:random"
       }
     },
-    accountTypeId: {
-      ref: 'accountTypes',
+    emailConfirm: {
+      ref: "emailConfirmation",
+      type: "ID",
       faker: {
-        fk: 'accountTypes:random'
+        fk: "emailConfirmation:random"
+      }
+    },
+    accountType: {
+      ref: "accountTypes",
+      type: "ID",
+      faker: {
+        fk: "accountTypes:random"
       }
     },
     fosta: {
-      type: 'boolean',
+      type: "boolean",
       chance: {
         bool: {
           likelihood: 65
@@ -75,7 +84,7 @@ let schema = {
       }
     },
     deletedAt: {
-      type: 'number',
+      type: "number",
       chance: {
         integer: {
           min: -1,
@@ -84,7 +93,7 @@ let schema = {
       }
     }
     // !end
-  },
+  }
   // !code: schema_more // !end
 };
 
@@ -93,11 +102,11 @@ let extensions = {
   // GraphQL generation.
   graphql: {
     // !code: graphql_header
-    name: 'User',
+    name: "User",
     service: {
       sort: {
         _id: 1
-      },
+      }
     },
     // sql: {
     //   sqlTable: 'Users',
@@ -114,16 +123,16 @@ let extensions = {
       // !<DEFAULT> code: graphql_add
       // __author__: { type: '__User__!', args: false, relation: { ourTable: '__authorId__', otherTable: '_id' } },
       // !end
-    },
+    }
     // !code: graphql_more // !end
-  },
+  }
 };
 
 // !code: more // !end
 
 let moduleExports = {
   schema,
-  extensions,
+  extensions
   // !code: moduleExports // !end
 };
 

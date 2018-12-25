@@ -49,10 +49,10 @@ module.exports = {
   // forceCoverageMatch: [],
 
   // A path to a module which exports an async function that is triggered once before all test suites
-  globalSetup: '<rootDir>/jest-global-setup.js',
+  globalSetup: "<rootDir>/jest-global-setup.js",
 
   // A path to a module which exports an async function that is triggered once after all test suites
-  globalTeardown: '<rootDir>/jest-global-teardown.js',
+  globalTeardown: "<rootDir>/jest-global-teardown.js",
 
   // A set of global variables that need to be available in all test environments
   // globals: {},
@@ -118,13 +118,13 @@ module.exports = {
   // setupFiles: [],
 
   // The path to a module that runs some code to configure or set up the testing framework before each test
-  setupTestFrameworkScriptFile: '<rootDir>/jest-setup.js',
+  setupTestFrameworkScriptFile: "<rootDir>/jest-setup.js",
 
   // A list of paths to snapshot serializer modules Jest should use for snapshot testing
   // snapshotSerializers: [],
 
   // The test environment that will be used for testing
-  testEnvironment: 'node',
+  testEnvironment: "node",
 
   // Options that will be passed to the testEnvironment
   // testEnvironmentOptions: {},
@@ -156,7 +156,7 @@ module.exports = {
   // testURL: "http://localhost",
 
   // Setting this value to "fake" allows the use of fake timers for functions such as "setTimeout"
-  timers: 'real',
+  timers: "real"
 
   // A map from regular expressions to paths to transformers
   // transform: null,

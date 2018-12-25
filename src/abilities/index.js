@@ -1,31 +1,29 @@
 /* eslint-disable */
-const {
-  Ability
-} = require('@casl/ability');
+const { Ability } = require("@casl/ability");
 
-const basicUserRules = require('./basic-user-rules');
-const mediaModeratorRules = require('./media-moderator-rules');
-const usersModeratorRules = require('./users-moderator-rules');
-const postsModeratorRules = require('./posts-moderator-rules');
-const adminRules = require('./admin-rules');
-const superAdminRules = require('./super-admin-rules');
+const basicUserRules = require("./basic-user-rules");
+const mediaModeratorRules = require("./media-moderator-rules");
+const usersModeratorRules = require("./users-moderator-rules");
+const postsModeratorRules = require("./posts-moderator-rules");
+const adminRules = require("./admin-rules");
+const superAdminRules = require("./super-admin-rules");
 
 // Aliases for feathers services method names.
-Ability.addAlias('update', 'patch');
-Ability.addAlias('read', ['get', 'find']);
-Ability.addAlias('remove', 'delete');
-Ability.addAlias('modify', ['update', 'patch']);
-Ability.addAlias('create', 'add');
-Ability.addAlias('manage', ['update', 'remove', 'patch']);
+Ability.addAlias("update", "patch");
+Ability.addAlias("read", ["get", "find"]);
+Ability.addAlias("remove", "delete");
+Ability.addAlias("modify", ["update", "patch"]);
+Ability.addAlias("create", "add");
+Ability.addAlias("manage", ["update", "remove", "patch"]);
 
 // Define abilities from here
 function defineAbilitiesFor(user, roles) {
   // Get the id of the roles
-  const usersModerator = roles['Users Moderator'];
-  const mediaModerator = roles['Media Moderator'];
-  const postsModerator = roles['Posts Moderator'];
-  const admin = roles['Admin'];
-  const superAdmin = roles['Super Admin'];
+  const usersModerator = roles["Users Moderator"];
+  const mediaModerator = roles["Media Moderator"];
+  const postsModerator = roles["Posts Moderator"];
+  const admin = roles["Admin"];
+  const superAdmin = roles["Super Admin"];
 
   let rulesForRole = {
     rulesForActions: [],
@@ -33,7 +31,7 @@ function defineAbilitiesFor(user, roles) {
   };
 
   if (user) {
-    switch (user.roleId) {
+    switch (user.role.toString()) {
       // Only have additional power to moderate users
       case usersModerator:
         rulesForRole = usersModeratorRules;
@@ -63,8 +61,8 @@ function defineAbilitiesFor(user, roles) {
 
   return {
     actionsAbility: new Ability(rulesForRole.rulesForActions(user)),
-    fieldsAbility: new Ability(rulesForRole.rulesForFields(user)),
-  }
+    fieldsAbility: new Ability(rulesForRole.rulesForFields(user))
+  };
 }
 
-module.exports = defineAbilitiesFor
+module.exports = defineAbilitiesFor;

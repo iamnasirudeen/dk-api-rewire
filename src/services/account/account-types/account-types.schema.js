@@ -1,4 +1,3 @@
-
 // Define the Feathers schema for service `accountTypes`. (Can be re-generated.)
 // !code: imports // !end
 // !code: init // !end
@@ -6,22 +5,22 @@
 // Define the model using JSON-schema
 let schema = {
   // !<DEFAULT> code: schema_header
-  title: 'AccountTypes',
-  description: 'AccountTypes database.',
+  title: "AccountTypes",
+  description: "AccountTypes database.",
   // !end
   // !code: schema_definitions // !end
 
   // Required fields.
   required: [
     // !code: schema_required
-    'name',
-    'published'
+    "name",
+    "published"
     // !end
   ],
   // Fields with unique values.
   uniqueItemProperties: [
     // !code: schema_unique
-    'name'
+    "name"
     // !end
   ],
 
@@ -31,10 +30,11 @@ let schema = {
     name: {
       minLength: 5,
       maxLength: 20,
-      faker: 'lorem.word'
+      faker: "lorem.word"
     },
+    displayOrder: { type: "number" },
     published: {
-      type: 'boolean',
+      type: "boolean",
       chance: {
         bool: {
           likelihood: 65
@@ -42,7 +42,7 @@ let schema = {
       }
     },
     deletedAt: {
-      type: 'number',
+      type: "number",
       chance: {
         integer: {
           min: -1,
@@ -51,7 +51,7 @@ let schema = {
       }
     }
     // !end
-  },
+  }
   // !code: schema_more // !end
 };
 
@@ -60,11 +60,11 @@ let extensions = {
   // GraphQL generation.
   graphql: {
     // !code: graphql_header
-    name: 'AccountType',
+    name: "AccountType",
     service: {
       sort: {
         _id: 1
-      },
+      }
     },
     // sql: {
     //   sqlTable: 'AccountTypes',
@@ -81,16 +81,16 @@ let extensions = {
       // !<DEFAULT> code: graphql_add
       // __author__: { type: '__User__!', args: false, relation: { ourTable: '__authorId__', otherTable: '_id' } },
       // !end
-    },
+    }
     // !code: graphql_more // !end
-  },
+  }
 };
 
 // !code: more // !end
 
 let moduleExports = {
   schema,
-  extensions,
+  extensions
   // !code: moduleExports // !end
 };
 

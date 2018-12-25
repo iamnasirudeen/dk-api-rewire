@@ -5,7 +5,7 @@ const {
   validateCreate,
   validateUpdate,
   validatePatch
-} = require('./account-types.validate');
+} = require("./account-types.validate");
 // !end
 
 // !code: init // !end
@@ -45,7 +45,7 @@ let moduleExports = {
     patch: [],
     remove: []
     // !end
-  },
+  }
   // !code: moduleExports // !end
 };
 

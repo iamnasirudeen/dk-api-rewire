@@ -1,28 +1,27 @@
-
 // Initializes the `history` service on path `/history`. (Can be re-generated.)
-const createService = require('feathers-mongoose');
-const createModel = require('../../../models/base/history.model');
-const hooks = require('./history.hooks');
+const createService = require("feathers-mongoose");
+const createModel = require("../../../models/base/history.model");
+const hooks = require("./history.hooks");
 // !code: imports // !end
 // !code: init // !end
 
-let moduleExports = function (app) {
+let moduleExports = function(app) {
   let Model = createModel(app);
-  let paginate = app.get('paginate');
+  let paginate = app.get("paginate");
   // !code: func_init // !end
 
   let options = {
     Model,
-    paginate,
+    paginate
     // !code: options_more // !end
   };
   // !code: options_change // !end
 
   // Initialize our service with any options it requires
-  app.use('/history', createService(options));
+  app.use("/history", createService(options));
 
   // Get our initialized service so that we can register hooks
-  const service = app.service('history');
+  const service = app.service("history");
 
   service.hooks(hooks);
   // !code: func_return // !end

@@ -4,7 +4,14 @@
     "inspectConflicts": false,
     "semicolons": true,
     "freeze": [
-      "logger.js"
+      "logger.js",
+      "src/services/account/account-types/account-types.hooks.js",
+      "src/services/account/users/users.hooks.js",
+      "src/services/account/email-confirmation/email-confirmation.hooks.js",
+      "src/services/account/roles/roles.hooks.js",
+      "src/services/base/api-keys/api-keys.hooks.js",
+      "src/services/base/histories/histories.hooks.js",
+      "src/services/options/option-values/option-values.service.js"
     ],
     "ts": false
   },
@@ -15,10 +22,7 @@
     "description": "API for datingkinky.com",
     "src": "src",
     "packager": "yarn@>= 0.18.0",
-    "providers": [
-      "rest",
-      "socketio"
-    ]
+    "providers": ["rest", "socketio"]
   },
   "services": {
     "history": {
@@ -50,7 +54,8 @@
       "adapter": "mongoose",
       "path": "/roles",
       "isAuthEntity": false,
-      "graphql": true
+      "graphql": true,
+      "requiresAuth": false
     },
     "users": {
       "name": "users",
@@ -62,6 +67,72 @@
       "isAuthEntity": true,
       "graphql": true,
       "requiresAuth": true
+    },
+    "apiKeys": {
+      "name": "apiKeys",
+      "nameSingular": "apiKey",
+      "subFolder": "base",
+      "fileName": "api-keys",
+      "adapter": "mongoose",
+      "path": "/api-keys",
+      "isAuthEntity": false,
+      "requiresAuth": false,
+      "graphql": true
+    },
+    "options": {
+      "name": "options",
+      "nameSingular": "option",
+      "subFolder": "options",
+      "fileName": "options",
+      "adapter": "mongoose",
+      "path": "/options",
+      "isAuthEntity": false,
+      "requiresAuth": false,
+      "graphql": true
+    },
+    "optionValues": {
+      "name": "optionValues",
+      "nameSingular": "optionValue",
+      "subFolder": "options",
+      "fileName": "option-values",
+      "adapter": "mongoose",
+      "path": "/option/option-id/values",
+      "isAuthEntity": false,
+      "requiresAuth": false,
+      "graphql": true
+    },
+    "userData": {
+      "name": "userData",
+      "nameSingular": "userData",
+      "subFolder": "account",
+      "fileName": "user-data",
+      "adapter": "mongoose",
+      "path": "/user-data",
+      "isAuthEntity": false,
+      "requiresAuth": false,
+      "graphql": true
+    },
+    "emailConfirmation": {
+      "name": "emailConfirmation",
+      "nameSingular": "emailConfirmation",
+      "subFolder": "account",
+      "fileName": "email-confirmation",
+      "adapter": "mongoose",
+      "path": "/email-confirmation",
+      "isAuthEntity": false,
+      "requiresAuth": false,
+      "graphql": true
+    },
+    "forgotPassword": {
+      "name": "forgotPassword",
+      "nameSingular": "forgotPassword",
+      "subFolder": "account",
+      "fileName": "forgot-password",
+      "adapter": "mongoose",
+      "path": "/forgot-password",
+      "isAuthEntity": false,
+      "requiresAuth": false,
+      "graphql": true
     }
   },
   "hooks": {
@@ -69,9 +140,7 @@
       "fileName": "log-to-history",
       "camelName": "logToHistory",
       "ifMulti": "y",
-      "multiServices": [
-        "*app"
-      ],
+      "multiServices": ["*app"],
       "singleService": ""
     },
     "prevent-history-mutation": {
@@ -85,28 +154,85 @@
       "fileName": "authorize-action",
       "camelName": "authorizeAction",
       "ifMulti": "y",
-      "multiServices": [
-        "*app"
-      ],
+      "multiServices": ["*app"],
       "singleService": ""
     },
     "authenticate": {
       "fileName": "authenticate",
       "camelName": "authenticate",
       "ifMulti": "y",
-      "multiServices": [
-        "*app"
-      ],
+      "multiServices": ["*app"],
       "singleService": ""
     },
     "escape-auth-check": {
       "fileName": "escape-auth-check",
       "camelName": "escapeAuthCheck",
       "ifMulti": "y",
-      "multiServices": [
-        "*app"
-      ],
+      "multiServices": ["*app"],
       "singleService": ""
+    },
+    "set-api-key-data": {
+      "fileName": "set-api-key-data",
+      "camelName": "setApiKeyData",
+      "ifMulti": "n",
+      "multiServices": [],
+      "singleService": "apiKeys"
+    },
+    "validate-api-key": {
+      "fileName": "validate-api-key",
+      "camelName": "validateApiKey",
+      "ifMulti": "y",
+      "multiServices": ["*app"],
+      "singleService": ""
+    },
+    "verify-user-create-data": {
+      "fileName": "verify-user-create-data",
+      "camelName": "verifyUserCreateData",
+      "ifMulti": "n",
+      "multiServices": [],
+      "singleService": "users"
+    },
+    "verify-option-type-id": {
+      "fileName": "verify-option-type-id",
+      "camelName": "verifyOptionTypeId",
+      "ifMulti": "n",
+      "multiServices": [],
+      "singleService": "optionValues"
+    },
+    "create-email-confirmation": {
+      "fileName": "create-email-confirmation",
+      "camelName": "createEmailConfirmation",
+      "ifMulti": "n",
+      "multiServices": [],
+      "singleService": "users"
+    },
+    "restrict-update-and-remove": {
+      "fileName": "restrict-update-and-remove",
+      "camelName": "restrictUpdateAndRemove",
+      "ifMulti": "n",
+      "multiServices": [],
+      "singleService": "emailConfirmation"
+    },
+    "verify-email": {
+      "fileName": "verify-email",
+      "camelName": "verifyEmail",
+      "ifMulti": "n",
+      "multiServices": [],
+      "singleService": "forgotPassword"
+    },
+    "set-forgot-password-data": {
+      "fileName": "set-forgot-password-data",
+      "camelName": "setForgotPasswordData",
+      "ifMulti": "n",
+      "multiServices": [],
+      "singleService": "forgotPassword"
+    },
+    "update-user-password": {
+      "fileName": "update-user-password",
+      "camelName": "updateUserPassword",
+      "ifMulti": "n",
+      "multiServices": [],
+      "singleService": "forgotPassword"
     }
   },
   "connections": {
@@ -117,9 +243,7 @@
     }
   },
   "authentication": {
-    "strategies": [
-      "local"
-    ],
+    "strategies": ["local"],
     "entity": "users"
   }
 }

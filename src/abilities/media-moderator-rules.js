@@ -1,25 +1,15 @@
 /* eslint-disable */
 
-const {
-  AbilityBuilder
-} = require('@casl/ability');
+const { AbilityBuilder } = require("@casl/ability");
 
-const rulesForActions = (user) => {
-  let {
-    rules,
-    can,
-    cannot
-  } = AbilityBuilder.extract();
+const rulesForActions = user => {
+  let { rules, can, cannot } = AbilityBuilder.extract();
 
   return rules;
 };
 
-const rulesForFields = (user) => {
-  let {
-    rules,
-    can,
-    cannot
-  } = AbilityBuilder.extract();
+const rulesForFields = user => {
+  let { rules, can, cannot } = AbilityBuilder.extract();
 
   return rules;
 };

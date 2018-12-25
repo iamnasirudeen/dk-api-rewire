@@ -1,0 +1,54 @@
+/* eslint quotes: 0 */
+// Defines the MongoDB $jsonSchema for service `emailConfirmation`. (Can be re-generated.)
+const merge = require("lodash.merge");
+// !code: imports // !end
+// !code: init // !end
+
+let moduleExports = merge(
+  {},
+  // !<DEFAULT> code: model
+  {
+    bsonType: "object",
+    additionalProperties: false,
+    properties: {
+      _id: {
+        bsonType: "objectId"
+      },
+      status: {
+        enum: [true, false],
+        bsonType: "boolean"
+      },
+      key: {
+        minLength: 10,
+        maxLength: 25,
+        bsonType: "string"
+      },
+      email: {
+        format: "email",
+        faker: "internet.email",
+        bsonType: "string"
+      },
+      username: {
+        bsonType: "string"
+      },
+      deletedAt: {
+        chance: {
+          integer: {
+            min: -1,
+            max: -1
+          }
+        },
+        bsonType: "number"
+      }
+    },
+    required: ["key", "email", "username"]
+  }
+  // !end
+  // !code: moduleExports // !end
+);
+
+// !code: exports // !end
+module.exports = moduleExports;
+
+// !code: funcs // !end
+// !code: end // !end

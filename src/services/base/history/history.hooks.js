@@ -1,4 +1,7 @@
-const preventHistoryMutation = require('./hooks/prevent-history-mutation');
+// Hooks for service `history`. (Can be re-generated.)
+const commonHooks = require("feathers-hooks-common"); // eslint-disable-line
+// eslint-disable-next-line no-unused-vars
+const preventHistoryMutation = require("./hooks/prevent-history-mutation");
 // !code: imports // !end
 
 // !code: used
@@ -7,7 +10,7 @@ const {
   validateCreate,
   validateUpdate,
   validatePatch
-} = require('./history.validate');
+} = require("./history.validate");
 // !end
 
 // !code: init // !end
@@ -47,7 +50,7 @@ let moduleExports = {
     patch: [],
     remove: []
     // !end
-  },
+  }
   // !code: moduleExports // !end
 };
 

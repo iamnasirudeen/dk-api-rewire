@@ -1,4 +1,3 @@
-
 // Define the Feathers schema for service `history`. (Can be re-generated.)
 // !code: imports // !end
 // !code: init // !end
@@ -6,15 +5,17 @@
 // Define the model using JSON-schema
 let schema = {
   // !<DEFAULT> code: schema_header
-  title: 'History',
-  description: 'History database.',
+  title: "History",
+  description: "History database.",
   // !end
   // !code: schema_definitions // !end
 
   // Required fields.
   required: [
     // !code: schema_required
-    'path', 'type', 'method'
+    "path",
+    "type",
+    "method"
     // !end
   ],
   // Fields with unique values.
@@ -26,21 +27,21 @@ let schema = {
   properties: {
     // !code: schema_properties
     type: {
-      enum: ['before', 'after', 'error']
+      enum: ["before", "after", "error"]
     },
     path: {},
     method: {
-      enum: ['find', 'get', 'create', 'update', 'patch', 'remove']
+      enum: ["find", "get", "create", "update", "patch", "remove"]
     },
     meta: {
-      type: 'object'
+      type: "object"
     },
     user: {
-      type: 'object'
+      type: "object"
     },
     provider: {}
     // !end
-  },
+  }
   // !code: schema_more // !end
 };
 
@@ -49,11 +50,11 @@ let extensions = {
   // GraphQL generation.
   graphql: {
     // !code: graphql_header
-    name: 'History',
+    name: "History",
     service: {
       sort: {
         _id: 1
-      },
+      }
     },
     // sql: {
     //   sqlTable: 'History',
@@ -70,16 +71,16 @@ let extensions = {
       // !<DEFAULT> code: graphql_add
       // __author__: { type: '__User__!', args: false, relation: { ourTable: '__authorId__', otherTable: '_id' } },
       // !end
-    },
+    }
     // !code: graphql_more // !end
-  },
+  }
 };
 
 // !code: more // !end
 
 let moduleExports = {
   schema,
-  extensions,
+  extensions
   // !code: moduleExports // !end
 };
 

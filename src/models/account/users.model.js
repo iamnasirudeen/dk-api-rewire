@@ -3,17 +3,17 @@
 // See http://mongoosejs.com/docs/models.html
 // for more of what you can do here.
 // !code: mongoose_schema
-const mongooseSchema = require('../../services/account/users/users.mongoose');
+const mongooseSchema = require("../../services/account/users/users.mongoose");
 const {
   accessibleFieldsPlugin,
   accessibleRecordsPlugin
-} = require('@casl/mongoose');
+} = require("@casl/mongoose");
 // !end
 // !code: mongoose_imports // !end
 // !code: mongoose_init // !end
 
-let moduleExports = function (app) {
-  let mongooseClient = app.get('mongooseClient');
+let moduleExports = function(app) {
+  let mongooseClient = app.get("mongooseClient");
   // !code: mongoose_func_init // !end
 
   // !code: mongoose_client
@@ -24,8 +24,8 @@ let moduleExports = function (app) {
   users.plugin(accessibleRecordsPlugin);
   // !end
 
-  let existingModel = mongooseClient.models['users']; // needed for client/server tests
-  let returns = existingModel || mongooseClient.model('users', users);
+  let existingModel = mongooseClient.models["users"]; // needed for client/server tests
+  let returns = existingModel || mongooseClient.model("users", users);
 
   // !code: mongoose_func_return // !end
   return returns;

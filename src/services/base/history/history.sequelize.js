@@ -1,18 +1,18 @@
-
 /* eslint quotes: 0 */
 // Defines Sequelize model for service `history`. (Can be re-generated.)
-const merge = require('lodash.merge');
-const Sequelize = require('sequelize');
+const merge = require("lodash.merge");
+const Sequelize = require("sequelize");
 // eslint-disable-next-line no-unused-vars
 const DataTypes = Sequelize.DataTypes;
 // !code: imports // !end
 // !code: init // !end
 
-let moduleExports = merge({},
+let moduleExports = merge(
+  {},
   // !<DEFAULT> code: sequelize_model
   {
     type: {
-      type: Sequelize.ENUM(["before","after","error"]),
+      type: Sequelize.ENUM(["before", "after", "error"]),
       allowNull: false
     },
     path: {
@@ -20,7 +20,14 @@ let moduleExports = merge({},
       allowNull: false
     },
     method: {
-      type: Sequelize.ENUM(["find","get","create","update","patch","remove"]),
+      type: Sequelize.ENUM([
+        "find",
+        "get",
+        "create",
+        "update",
+        "patch",
+        "remove"
+      ]),
       allowNull: false
     },
     meta: {
@@ -32,7 +39,7 @@ let moduleExports = merge({},
     provider: {
       type: DataTypes.TEXT
     }
-  },
+  }
   // !end
   // !code: moduleExports // !end
 );

@@ -13,10 +13,10 @@ if (port === "localhost") {
 const Bull = require("bull");
 const queue = new Bull("mail", redisURL);
 
-const AWS_ACCESS_KEY_ID = "AKIAIXO55OWYYIQK6IJQ";
-const AWS_SECRET_ACCESS_KEY = "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";
-const AWS_SES_API_VERSION = "2010-12-01";
-const AWS_SES_REGION = "us-east-1";
+const AWS_ACCESS_KEY_ID = process.env.AWS_ACCESS_KEY_ID;
+const AWS_SECRET_ACCESS_KEY = process.env.AWS_SECRET_ACCESS_KEY;
+const AWS_SES_API_VERSION = process.env.AWS_SES_API_VERSION;
+const AWS_SES_REGION = process.env.AWS_SES_REGION;
 
 let ses = new AWS.SES({
   // eslint-disable-line
@@ -26,8 +26,8 @@ let ses = new AWS.SES({
   region: AWS_SES_REGION
 });
 
-const replyToAddress = "no-reply@datingkinky.com";
-let sourceAddress = "no-reply@datingkinky.com";
+const replyToAddress = process.env.REPLY_TO_ADDRESS;
+let sourceAddress = process.env.REPLY_TO_ADDRESS;
 
 const sendQueuedEmail = (template, data, done) => {
   let __data = data;

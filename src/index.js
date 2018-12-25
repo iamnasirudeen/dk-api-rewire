@@ -7,7 +7,7 @@ const seedData = require("./seed-data");
 // !code: imports // !end
 // !code: init // !end
 
-const port = app.get("port");
+const port = process.env.PORT || app.get("port");
 const server = app.listen(port);
 // !code: init2
 const initDataSeeder = require("./init-data-seeder");

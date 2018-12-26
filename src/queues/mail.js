@@ -31,8 +31,15 @@ const replyToAddress = process.env.REPLY_TO_ADDRESS || process.env.FROM_EMAIL;
 let sourceAddress = process.env.REPLY_TO_ADDRESS || process.env.FROM_EMAIL;
 
 const sendQueuedEmail = (template, data, done) => {
+  // quickly call done if the env for ENABLE_MAIL_QUEUES is falsy
+  if (!process.env.ENABLE_EMAIL_QUEUES) {
+    // done();
+    // return;
+  }
+  // Continue if truthy
   let __data = data;
   __data.siteURL = siteURL;
+  // Params for SES
   let params = {
     Destination: {
       ToAddresses: [data.email]
@@ -46,8 +53,10 @@ const sendQueuedEmail = (template, data, done) => {
   ses.sendTemplatedEmail(params, (err, data) => {
     if (err) {
       console.error(err); // eslint-disable-line
+      // calls done incase there is an error, so we don't stay in a loop
       return done(err);
     }
+    // Success? Call done and we are good to go
     done();
   });
 };
@@ -58,6 +67,22 @@ queue.process("sendConfirmEmail", 2, (job, done) => {
   let token = job.data.key; // Key for registration
   let data = { username, email, token };
   sendQueuedEmail("Confirm", data, done);
+});
+
+queue.process("resendConfirmEmail", 2, (job, done) => {
+  let username = job.data.username; // user registration email
+  let email = job.data.email; // registration email
+  let token = job.data.key; // Key for registration
+  let data = { username, email, token };
+  sendQueuedEmail("ResendConfirm", data, done);
+});
+
+queue.process("sendForgotPasswordEMail", 2, (job, done) => {
+  let username = job.data.username; // user registration email
+  let email = job.data.email; // registration email
+  let token = job.data.key; // Key for registration
+  let data = { username, email, token };
+  sendQueuedEmail("ForgotPassword", data, done);
 });
 
 module.exports = queue;

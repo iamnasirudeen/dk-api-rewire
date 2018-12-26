@@ -39,21 +39,21 @@ let moduleExports = merge(
         faker: "internet.ip",
         bsonType: "string"
       },
-      role: {
+      roleId: {
         ref: "roles",
         faker: {
           fk: "roles:random"
         },
         bsonType: "objectId"
       },
-      emailConfirm: {
+      emailConfirmId: {
         ref: "emailConfirmation",
         faker: {
           fk: "emailConfirmation:random"
         },
         bsonType: "objectId"
       },
-      accountType: {
+      accountTypeId: {
         ref: "accountTypes",
         faker: {
           fk: "accountTypes:random"
@@ -82,9 +82,9 @@ let moduleExports = merge(
       "username",
       "email",
       "password",
-      "role",
-      "emailConfirm",
-      "accountType",
+      "roleId",
+      "emailConfirmId",
+      "accountTypeId",
       "fosta",
       "dateOfBirth"
     ]

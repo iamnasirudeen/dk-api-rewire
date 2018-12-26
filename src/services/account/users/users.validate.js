@@ -21,9 +21,9 @@ let base = merge(
       "username",
       "email",
       "password",
-      "role",
-      "emailConfirm",
-      "accountType",
+      "roleId",
+      "emailConfirmId",
+      "accountTypeId",
       "fosta",
       "dateOfBirth"
     ],
@@ -54,21 +54,21 @@ let base = merge(
         faker: "internet.ip",
         type: "string"
       },
-      role: {
+      roleId: {
         ref: "roles",
         type: ID,
         faker: {
           fk: "roles:random"
         }
       },
-      emailConfirm: {
+      emailConfirmId: {
         ref: "emailConfirmation",
         type: ID,
         faker: {
           fk: "emailConfirmation:random"
         }
       },
-      accountType: {
+      accountTypeId: {
         ref: "accountTypes",
         type: ID,
         faker: {

@@ -7,7 +7,9 @@ const {
   replaceItems
 } = require("feathers-hooks-common");
 const cryptoRandomString = require("crypto-random-string");
-
+/**
+ * This hook creates an email confirmation record for the using the emailConfirmation service
+ */
 // eslint-disable-next-line no-unused-vars
 module.exports = function(options = {}) {
   // Return the actual hook.
@@ -25,11 +27,11 @@ module.exports = function(options = {}) {
      */
     if (Array.isArray(records)) {
       records.map(async record => {
-        record.emailConfirm = await createEmailConfirmation(record, context);
+        record.emailConfirmId = await createEmailConfirmation(record, context);
         return record;
       });
     } else {
-      records.emailConfirm = await createEmailConfirmation(records, context);
+      records.emailConfirmId = await createEmailConfirmation(records, context);
     }
     // Place the modified records back in the context.
     replaceItems(context, records);

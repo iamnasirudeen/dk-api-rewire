@@ -21,7 +21,8 @@ module.exports = function(options = {}) {
     /*
     Modify records and/or context.
      */
-    if (context.method === "patch") {
+    // A patch call with email not set in the body of the call
+    if (context.method === "patch" && !records.email) {
       // We need email too when patching the user's record.
       // Using the 'key' ordinarily does not guarantee our safety
       const params = context.params;

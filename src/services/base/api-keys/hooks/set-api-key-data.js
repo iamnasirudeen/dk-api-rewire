@@ -7,7 +7,11 @@ const {
   replaceItems
 } = require("feathers-hooks-common");
 const cryptoRandomString = require("crypto-random-string");
-
+/**
+ *
+ * Adds key, status, hits, deletedAt to create calls
+ *
+ */
 // eslint-disable-next-line no-unused-vars
 module.exports = function(options = {}) {
   // Return the actual hook.

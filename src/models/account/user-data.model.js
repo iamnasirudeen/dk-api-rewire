@@ -2,7 +2,7 @@
 //
 // See http://mongoosejs.com/docs/models.html
 // for more of what you can do here.
-// !ode: mongoose_schema
+// !<DEFAULT> code: mongoose_schema
 const mongooseSchema = require("../../services/account/user-data/user-data.mongoose");
 // !end
 // !code: mongoose_imports

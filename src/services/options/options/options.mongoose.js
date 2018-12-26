@@ -17,7 +17,7 @@ let moduleExports = merge(
     },
     shortName: String,
     longName: String,
-    author: {
+    userId: {
       type: mongoose.Schema.Types.ObjectId,
       required: true
     },

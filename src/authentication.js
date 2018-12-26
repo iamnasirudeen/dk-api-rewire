@@ -3,7 +3,9 @@ const authentication = require("@feathersjs/authentication");
 const jwt = require("@feathersjs/authentication-jwt");
 const local = require("@feathersjs/authentication-local");
 
-// !code: imports // !end
+// !code: imports
+const verifyUserOnAuthentication = require("./hooks/verify-user-on-authentication");
+// !end
 // !code: init // !end
 
 let moduleExports = function(app) {
@@ -23,8 +25,9 @@ let moduleExports = function(app) {
   app.service("authentication").hooks({
     before: {
       create: [
-        // !<DEFAULT> code: before_create
-        authentication.hooks.authenticate(config.strategies)
+        // !code: before_create
+        authentication.hooks.authenticate(config.strategies),
+        verifyUserOnAuthentication()
         // !end
       ],
       remove: [

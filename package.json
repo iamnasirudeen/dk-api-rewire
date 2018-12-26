@@ -36,6 +36,8 @@
   "dependencies": {
     "@casl/ability": "^2.5.1",
     "@casl/mongoose": "^2.2.2",
+    "@feathers-plus/batch-loader": "^0.3.4",
+    "@feathers-plus/cache": "^1.4.0",
     "@feathers-plus/test-utils": "^0.3.5",
     "@feathersjs/authentication": "^2.1.7",
     "@feathersjs/authentication-jwt": "^2.0.1",

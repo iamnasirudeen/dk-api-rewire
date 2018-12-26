@@ -23,8 +23,8 @@ let moduleExports = merge(
       longName: {
         bsonType: "string"
       },
-      author: {
-        fk: "userId:random",
+      userId: {
+        fk: "users:random",
         bsonType: "objectId"
       },
       displayOrder: {
@@ -46,7 +46,7 @@ let moduleExports = merge(
         bsonType: "number"
       }
     },
-    required: ["name", "author", "type"]
+    required: ["name", "userId", "type"]
   }
   // !end
   // !code: moduleExports // !end

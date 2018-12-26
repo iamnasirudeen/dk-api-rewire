@@ -10,26 +10,26 @@ module.exports = function(options = {}) {
   return async context => {
     // Throw if the hook is being called from an unexpected location.
     checkContext(context, null, ["create"]);
-    // getItems always returns an array to simplify your processing.
-    const { role, accountType } = getItems(context);
+    // roleId and accountTypeId sent by the user
+    const { roleId, accountTypeId } = getItems(context);
 
     /*
     Modify records and/or context.
      */
     try {
-      await context.app.service("/roles").get(role);
+      await context.app.service("/roles").get(roleId);
       const accountTypeRecord = await context.app
         .service("/account-types")
-        .get(accountType);
+        .get(accountTypeId);
       // Detects if the account type is not published and throw an error containing the account type _id from the data
       accountTypeRecord.published
         ? null
-        : error(`${accountType} not published`);
+        : error(`${accountTypeId} not published`);
     } catch (e) {
       // Detects which error was thrown by detecting if the error message contains one of the ids
-      let msg = e.message.includes(role)
-        ? `Invalid '${role}' for roleId`
-        : `Invalid '${accountType}' for accountTypeId`;
+      let msg = e.message.includes(roleId)
+        ? `Invalid '${roleId}' for roleId`
+        : `Invalid '${accountTypeId}' for accountTypeId`;
       // throws BadRequest error if the user had used a bad roleId or accountTypeId
       throw error(msg);
     }

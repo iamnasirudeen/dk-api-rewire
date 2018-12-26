@@ -5,6 +5,7 @@
     "semicolons": true,
     "freeze": [
       "src/index.js",
+      "src/seed-data.js",
       "logger.js",
       "src/services/account/account-types/account-types.hooks.js",
       "src/services/account/users/users.hooks.js",
@@ -234,6 +235,20 @@
       "ifMulti": "n",
       "multiServices": [],
       "singleService": "forgotPassword"
+    },
+    "resend-token": {
+      "fileName": "resend-token",
+      "camelName": "resendToken",
+      "ifMulti": "n",
+      "multiServices": [],
+      "singleService": "emailConfirmation"
+    },
+    "verify-user-on-authentication": {
+      "fileName": "verify-user-on-authentication",
+      "camelName": "verifyUserOnAuthentication",
+      "ifMulti": "y",
+      "multiServices": ["*none"],
+      "singleService": ""
     }
   },
   "connections": {

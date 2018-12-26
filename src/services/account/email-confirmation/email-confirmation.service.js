@@ -26,9 +26,6 @@ let moduleExports = function(app) {
   const service = app.service("email-confirmation");
 
   service.hooks(hooks);
-  service.on("created", data => {
-    mailQueue.add("sendConfirmEmail", data);
-  });
   // !code: func_return // !end
 };
 

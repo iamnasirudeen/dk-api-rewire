@@ -7,8 +7,12 @@ const {
   replaceItems
 } = require("feathers-hooks-common");
 const { BadRequest } = require("@feathersjs/errors");
-// eslint-disable-next-line no-unused-vars
-module.exports = function(options = {}) {
+/**
+ *
+ * Checks if optionId in the route params is a valid optionId
+ *
+ */
+module.exports = function() {
   // Return the actual hook.
   return async context => {
     // Throw if the hook is being called from an unexpected location.
@@ -21,8 +25,10 @@ module.exports = function(options = {}) {
       "remove"
     ]);
 
+    // Get the optionId
     let optionId = context.params.route.optionId;
     try {
+      // Get the optionId throws if not found
       // eslint-disable-next-line
       const optionResult = await context.app.service("/options").get(optionId);
     } catch (e) {
@@ -30,21 +36,23 @@ module.exports = function(options = {}) {
     }
     const { method } = context;
     if (["remove", "patch", "update", "find"].includes(method)) {
+      // Set the optionId in the query
       if (!context.params.query) {
         context.params.query = {};
       }
-      context.params.query.option = { $eq: optionId };
+      context.params.query.optionId = { $eq: optionId };
       context.params.query.$sort = { displayOrder: 1 };
     } else if (method === "create") {
+      // Set the optionId in the record
       let records = getItems(context);
       records.optionId = optionId;
       if (Array.isArray(records)) {
         records.map(rec => {
-          rec.option = optionId;
+          rec.optionId = optionId;
           return rec;
         });
       } else {
-        records.option = optionId;
+        records.optionId = optionId;
       }
       replaceItems(context, records);
     }

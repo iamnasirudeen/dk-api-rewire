@@ -3,8 +3,13 @@
 
 const { checkContext } = require("feathers-hooks-common");
 
-// eslint-disable-next-line no-unused-vars
-module.exports = function(options = {}) {
+/**
+ *
+ * Does not allow users to mutate histories
+ * Only get, find and create calls are allowed
+ *
+ */
+module.exports = function() {
   // Return the actual hook.
   return async context => {
     // Throw if the hook is being called from an unexpected location.

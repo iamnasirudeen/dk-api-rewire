@@ -3,8 +3,13 @@
 
 const { getItems, isProvider } = require("feathers-hooks-common");
 const { BadRequest } = require("@feathersjs/errors");
-// eslint-disable-next-line no-unused-vars
-module.exports = function(options = {}) {
+
+/**
+ *
+ * Verify that the user has been registered
+ *
+ */
+module.exports = function() {
   // Return the actual hook.
   return async context => {
     // getItems always returns an array to simplify your processing.

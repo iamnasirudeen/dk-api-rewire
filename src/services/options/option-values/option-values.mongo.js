@@ -23,21 +23,21 @@ let moduleExports = merge(
       longName: {
         bsonType: "string"
       },
-      option: {
+      optionId: {
         faker: {
           fk: "options:random"
         },
         ref: "options",
         bsonType: "objectId"
       },
-      author: {
+      userId: {
         faker: {
           fk: "users:random"
         },
         ref: "users",
         bsonType: "objectId"
       },
-      accountTypes: {
+      accountTypeIds: {
         items: {
           type: "ID"
         },
@@ -60,7 +60,7 @@ let moduleExports = merge(
         bsonType: "number"
       }
     },
-    required: ["name", "author", "accountTypes"]
+    required: ["name", "userId", "optionId", "accountTypeIds"]
   }
   // !end
   // !code: moduleExports // !end

@@ -14,7 +14,7 @@ let schema = {
   required: [
     // !code: schema_required
     "name",
-    "author",
+    "userId",
     "type"
     // !end
   ],
@@ -31,7 +31,7 @@ let schema = {
     name: {},
     shortName: {},
     longName: {},
-    author: { fk: "userId:random", type: "ID" },
+    userId: { fk: "users:random", type: "ID" },
     displayOrder: { type: "number", minimum: 0 },
     type: { enum: ["single", "multi"], default: "single" },
     deletedAt: { type: "number", chance: { integer: { min: -1, max: -1 } } }

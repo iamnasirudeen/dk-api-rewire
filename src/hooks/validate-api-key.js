@@ -1,7 +1,11 @@
 const { Forbidden, BadRequest } = require("@feathersjs/errors");
 
-// eslint-disable-next-line no-unused-vars
-module.exports = function(options = {}) {
+/**
+ *
+ * Make sure we have a valid API KEY when dealing with this API
+ *
+ */
+module.exports = function() {
   // Return the actual hook.
   return async context => {
     const {

@@ -2,7 +2,9 @@
 const createService = require("feathers-mongoose");
 const createModel = require("../../../models/account/forgot-password.model");
 const hooks = require("./forgot-password.hooks");
-// !code: imports // !end
+// !code: imports
+const { mailQueue } = require("./../../../queues");
+// !end
 // !code: init // !end
 
 let moduleExports = function(app) {

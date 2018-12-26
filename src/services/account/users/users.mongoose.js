@@ -29,15 +29,15 @@ let moduleExports = merge(
       required: true
     },
     ip: String,
-    role: {
+    roleId: {
       type: mongoose.Schema.Types.ObjectId,
       required: true
     },
-    emailConfirm: {
+    emailConfirmId: {
       type: mongoose.Schema.Types.ObjectId,
       required: true
     },
-    accountType: {
+    accountTypeId: {
       type: mongoose.Schema.Types.ObjectId,
       required: true
     },

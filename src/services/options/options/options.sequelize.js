@@ -22,7 +22,7 @@ let moduleExports = merge(
     longName: {
       type: DataTypes.TEXT
     },
-    author: {
+    userId: {
       type: DataTypes.INTEGER,
       allowNull: false
     },

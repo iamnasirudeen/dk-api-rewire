@@ -35,15 +35,15 @@ let moduleExports = merge(
     ip: {
       type: DataTypes.TEXT
     },
-    role: {
+    roleId: {
       type: DataTypes.INTEGER,
       allowNull: false
     },
-    emailConfirm: {
+    emailConfirmId: {
       type: DataTypes.INTEGER,
       allowNull: false
     },
-    accountType: {
+    accountTypeId: {
       type: DataTypes.INTEGER,
       allowNull: false
     },

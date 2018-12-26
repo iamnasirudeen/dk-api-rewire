@@ -9,7 +9,13 @@ const {
 } = require("feathers-hooks-common");
 const { NotFound } = require("@feathersjs/errors");
 const cryptoRandomString = require("crypto-random-string");
-
+/**
+ * Adds key, status, username, email to create calls
+ *
+ * Does checking if the key is not used and if the user has a record in the db for patch calls
+ *
+ * Update calls are not allowed
+ */
 // eslint-disable-next-line no-unused-vars
 module.exports = function(options = {}) {
   // Return the actual hook.

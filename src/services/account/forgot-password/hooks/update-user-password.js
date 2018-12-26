@@ -6,7 +6,11 @@ const {
   getItems,
   replaceItems
 } = require("feathers-hooks-common");
-
+/**
+ *
+ * Updates the user's password after successfully verifying the user's request using a patch call
+ *
+ */
 // eslint-disable-next-line no-unused-vars
 module.exports = function(options = {}) {
   // Return the actual hook.
@@ -27,7 +31,9 @@ module.exports = function(options = {}) {
 
     // console.log(context._user_); // eslint-disable-line
     const { query, data } = context._user_;
-    await context.app.service("/users").patch(null, data, { query });
+    if (data && data.password) {
+      await context.app.service("/users").patch(null, data, { query });
+    }
     // Place the modified records back in the context.
     replaceItems(context, records);
     // Best practice: hooks should always return the context.

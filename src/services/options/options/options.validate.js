@@ -17,7 +17,7 @@ let base = merge(
   {
     title: "Options",
     description: "Options database.",
-    required: ["name", "author", "type"],
+    required: ["name", "userId", "type"],
     uniqueItemProperties: ["name"],
     properties: {
       name: {
@@ -29,8 +29,8 @@ let base = merge(
       longName: {
         type: "string"
       },
-      author: {
-        fk: "userId:random",
+      userId: {
+        fk: "users:random",
         type: ID
       },
       displayOrder: {

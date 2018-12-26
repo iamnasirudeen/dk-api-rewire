@@ -1,5 +1,5 @@
 // Hooks for service `history`. (Can be re-generated.)
-const commonHooks = require("feathers-hooks-common"); // eslint-disable-line
+const commonHooks = require("feathers-hooks-common");
 // eslint-disable-next-line no-unused-vars
 const preventHistoryMutation = require("./hooks/prevent-history-mutation");
 // !code: imports // !end

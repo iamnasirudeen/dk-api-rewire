@@ -31,7 +31,7 @@ function defineAbilitiesFor(user, roles) {
   };
 
   if (user) {
-    switch (user.role.toString()) {
+    switch (user.roleId.toString()) {
       // Only have additional power to moderate users
       case usersModerator:
         rulesForRole = usersModeratorRules;

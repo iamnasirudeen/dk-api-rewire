@@ -2,6 +2,7 @@
 const commonHooks = require("feathers-hooks-common"); // eslint-disable-line
 // eslint-disable-next-line no-unused-vars
 const restrictUpdateAndRemove = require("./hooks/restrict-update-and-remove");
+const resendToken = require("./hooks/resend-token");
 // !code: imports // !end
 
 // !code: used
@@ -17,7 +18,7 @@ const {
 let moduleExports = {
   before: {
     // !code: before
-    all: [restrictUpdateAndRemove()],
+    all: [resendToken(), restrictUpdateAndRemove()],
     find: [],
     get: [],
     create: [validateCreate()],

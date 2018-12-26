@@ -17,7 +17,7 @@ let base = merge(
   {
     title: "OptionValues",
     description: "OptionValues database.",
-    required: ["name", "author", "accountTypes"],
+    required: ["name", "userId", "optionId", "accountTypeIds"],
     uniqueItemProperties: [],
     properties: {
       name: {
@@ -29,21 +29,21 @@ let base = merge(
       longName: {
         type: "string"
       },
-      option: {
+      optionId: {
         faker: {
           fk: "options:random"
         },
         type: ID,
         ref: "options"
       },
-      author: {
+      userId: {
         faker: {
           fk: "users:random"
         },
         type: ID,
         ref: "users"
       },
-      accountTypes: {
+      accountTypeIds: {
         type: "array",
         items: {
           type: ID

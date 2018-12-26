@@ -16,12 +16,15 @@ let moduleExports = merge(
     },
     shortName: String,
     longName: String,
-    option: mongoose.Schema.Types.ObjectId,
-    author: {
+    optionId: {
       type: mongoose.Schema.Types.ObjectId,
       required: true
     },
-    accountTypes: {
+    userId: {
+      type: mongoose.Schema.Types.ObjectId,
+      required: true
+    },
+    accountTypeIds: {
       type: [mongoose.Schema.Types.ObjectId],
       required: true
     },

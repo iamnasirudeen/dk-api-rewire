@@ -14,8 +14,9 @@ let schema = {
   required: [
     // !code: schema_required
     "name",
-    "author",
-    "accountTypes"
+    "userId",
+    "optionId",
+    "accountTypeIds"
     // !end
   ],
   // Fields with unique values.
@@ -29,9 +30,9 @@ let schema = {
     name: {},
     shortName: {},
     longName: {},
-    option: { faker: { fk: "options:random" }, type: "ID", ref: "options" },
-    author: { faker: { fk: "users:random" }, type: "ID", ref: "users" },
-    accountTypes: {
+    optionId: { faker: { fk: "options:random" }, type: "ID", ref: "options" },
+    userId: { faker: { fk: "users:random" }, type: "ID", ref: "users" },
+    accountTypeIds: {
       type: "array",
       items: { type: "ID" },
       ref: "accountTypes",

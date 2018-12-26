@@ -9,7 +9,10 @@ const seedData = require("./seed-data");
 // !code: imports // !end
 // !code: init // !end
 
+// Get the port from the app/process
 const port = process.env.PORT || app.get("port");
+// Set it back in case it changes
+app.set("port", port);
 const server = app.listen(port);
 // !code: init2
 const initDataSeeder = require("./init-data-seeder");
@@ -31,10 +34,14 @@ server.on("listening", async () => {
     port
   );
   // !end
+  // This section does updating the swagger config file in the public path to hold the current host based pn the environment
   // !code: listening
-  const host = app.get("host");
+  let host = app.get("host");
   let swaggerConfig = require("./../public/swagger-ui/config.v1.json");
   if (swaggerConfig.host !== host) {
+    // Adds the port if we are running on localhost
+    host = host === "localhost" ? `${host}:${port}` : host;
+    // Update the host
     swaggerConfig.host = host;
     require("fs").writeFile(
       `${process.cwd()}/public/swagger-ui/config.v1.json`,

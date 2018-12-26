@@ -21,14 +21,15 @@ let moduleExports = merge(
     longName: {
       type: DataTypes.TEXT
     },
-    option: {
-      type: DataTypes.INTEGER
-    },
-    author: {
+    optionId: {
       type: DataTypes.INTEGER,
       allowNull: false
     },
-    accountTypes: {
+    userId: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    accountTypeIds: {
       type: DataTypes.JSONB,
       allowNull: false
     },

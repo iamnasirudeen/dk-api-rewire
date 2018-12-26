@@ -45,14 +45,16 @@ module.exports = async app => {
     .find({ email: adminUser.email }) // find the user token from the db
     .then(async res => {
       const data = res.data[0];
-      // Set the query params to update it
-      const _params = {
-        query: { email: data.email, key: data.key }
-      };
-      // do a patch call to set the status to confirmed
-      await app
-        .service("/email-confirmation")
-        .patch(null, { status: true }, _params);
+      if (!data.status) {
+        // Set the query params to update it
+        const _params = {
+          query: { email: data.email, key: data.key }
+        };
+        // do a patch call to set the status to confirmed
+        await app
+          .service("/email-confirmation")
+          .patch(null, { status: true }, _params);
+      }
     });
   let adminUserId = (Array.isArray(adminUserData)
     ? adminUserData[0]

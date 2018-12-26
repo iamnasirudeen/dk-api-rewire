@@ -1,6 +1,8 @@
 /* eslint-disable no-console */
 // Start the server. (Can be re-generated.)
-// !code: preface // !end
+// !code: preface
+require("dotenv-flow").config();
+// !end
 const logger = require("./logger");
 const app = require("./app");
 const seedData = require("./seed-data");

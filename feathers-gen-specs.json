@@ -4,6 +4,7 @@
     "inspectConflicts": false,
     "semicolons": true,
     "freeze": [
+      "src/index.js",
       "logger.js",
       "src/services/account/account-types/account-types.hooks.js",
       "src/services/account/users/users.hooks.js",

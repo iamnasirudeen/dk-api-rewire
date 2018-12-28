@@ -38,9 +38,9 @@ server.on("listening", async () => {
   // !code: listening
   let host = app.get("host");
   let swaggerConfig = require("./../public/swagger-ui/config.v1.json");
+  // Adds the port if we are running on localhost
+  host = host === "localhost" ? `${host}:${port}` : host;
   if (swaggerConfig.host !== host) {
-    // Adds the port if we are running on localhost
-    host = host === "localhost" ? `${host}:${port}` : host;
     // Update the host
     swaggerConfig.host = host;
     require("fs").writeFile(

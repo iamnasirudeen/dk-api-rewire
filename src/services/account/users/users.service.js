@@ -2,7 +2,9 @@
 const createService = require("feathers-mongoose");
 const createModel = require("../../../models/account/users.model");
 const hooks = require("./users.hooks");
-// !code: imports // !end
+// !code: imports
+const { mailQueue } = require("./../../../queues");
+// !end
 // !code: init // !end
 
 let moduleExports = function(app) {
@@ -22,7 +24,18 @@ let moduleExports = function(app) {
 
   // Get our initialized service so that we can register hooks
   const service = app.service("users");
+  service.on("created", async (data, context) => {
+    const result = await context.app
+      .service("/email-confirmation")
+      .get(data.emailConfirmId);
 
+    const _data = {
+      username: data.username,
+      email: data.email,
+      token: result.key
+    };
+    mailQueue.add("sendConfirmEmail", _data);
+  });
   service.hooks(hooks);
   // !code: func_return // !end
 };

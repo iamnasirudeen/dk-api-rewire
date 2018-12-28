@@ -83,7 +83,6 @@ let moduleExports = merge(
       "email",
       "password",
       "roleId",
-      "emailConfirmId",
       "accountTypeId",
       "fosta",
       "dateOfBirth"

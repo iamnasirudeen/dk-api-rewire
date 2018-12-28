@@ -25,6 +25,8 @@ module.exports = function() {
       "remove"
     ]);
 
+    console.log(context.params);
+
     // Get the optionId
     let optionId = context.params.route.optionId;
     try {

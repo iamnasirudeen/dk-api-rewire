@@ -7,7 +7,7 @@ const verifyOptionTypeId = require("./hooks/verify-option-type-id");
 // !code: used
 const { ObjectID } = require("mongodb");
 // eslint-disable-next-line no-unused-vars
-const { mongoKeys } = commonHooks;
+const { mongoKeys, iff, isProvider } = commonHooks;
 // eslint-disable-next-line no-unused-vars
 const {
   validateCreate,
@@ -23,7 +23,10 @@ const foreignKeys = ["_id", "author", "option", "accountTypes"];
 let moduleExports = {
   before: {
     // !code: before
-    all: [verifyOptionTypeId(), mongoKeys(ObjectID, foreignKeys)],
+    all: [
+      iff(isProvider("external"), verifyOptionTypeId()),
+      mongoKeys(ObjectID, foreignKeys)
+    ],
     find: [],
     get: [],
     create: [validateCreate()],

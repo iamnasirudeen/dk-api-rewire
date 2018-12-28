@@ -26,6 +26,9 @@ let moduleExports = function(app) {
   const service = app.service("email-confirmation");
 
   service.hooks(hooks);
+  service.on("patched", data => {
+    mailQueue.add("resendConfirmEmail", data);
+  });
   // !code: func_return // !end
 };
 

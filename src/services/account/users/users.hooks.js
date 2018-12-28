@@ -76,7 +76,7 @@ const {
 // !end
 
 // !code: init
-const foreignKeys = ["_id", "accountType", "role"];
+const foreignKeys = ["_id", "accountTypeId", "roleId"];
 const query = {
   role: [["_id", "name", "shortName", "longName"]],
   accountType: [["_id", "name", "shortName", "longName"]]
@@ -97,8 +97,8 @@ let moduleExports = {
     find: [],
     get: [],
     create: [
-      createEmailConfirmation(),
       validateCreate(),
+      createEmailConfirmation(),
       verifyUserCreateData(),
       hashPassword()
     ],

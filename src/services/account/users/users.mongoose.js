@@ -33,10 +33,7 @@ let moduleExports = merge(
       type: mongoose.Schema.Types.ObjectId,
       required: true
     },
-    emailConfirmId: {
-      type: mongoose.Schema.Types.ObjectId,
-      required: true
-    },
+    emailConfirmId: mongoose.Schema.Types.ObjectId,
     accountTypeId: {
       type: mongoose.Schema.Types.ObjectId,
       required: true

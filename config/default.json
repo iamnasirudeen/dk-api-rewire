@@ -18,6 +18,7 @@
     "username": "admin",
     "password": "DAT1NG_K1NKY",
     "fosta": true,
+    "deletedAt": -1,
     "dateOfBirth": "1980-01-01",
     "email": "admin@datingkinky.com",
     "ip": "22.4.89.190"
@@ -25,22 +26,28 @@
   "unsetErrorKey": "unsetErrorToResult",
   "supportedRoles": [
     {
-      "name": "Super Admin"
+      "name": "Super Admin",
+      "deletedAt": -1
     },
     {
-      "name": "Admin"
+      "name": "Admin",
+      "deletedAt": -1
     },
     {
-      "name": "Users Moderator"
+      "name": "Users Moderator",
+      "deletedAt": -1
     },
     {
-      "name": "Posts Moderator"
+      "name": "Posts Moderator",
+      "deletedAt": -1
     },
     {
-      "name": "Media Moderator"
+      "name": "Media Moderator",
+      "deletedAt": -1
     },
     {
-      "name": "Basic User"
+      "name": "Basic User",
+      "deletedAt": -1
     }
   ],
   "supportedAccountTypes": [
@@ -48,30 +55,35 @@
       "displayOrder": 5,
       "_id": "5b8c3357f0cf0c0edded5370",
       "name": "Administrator",
+      "deletedAt": -1,
       "published": true
     },
     {
       "displayOrder": 1,
       "_id": "5b8c3662633635082db7ae29",
       "name": "Individual",
+      "deletedAt": -1,
       "published": true
     },
     {
       "displayOrder": 2,
       "_id": "5b8c3662633635082db7ae2a",
       "name": "Couple",
+      "deletedAt": -1,
       "published": true
     },
     {
       "displayOrder": 3,
       "_id": "5b8c3662633635082db7ae2b",
       "name": "Group/Family",
+      "deletedAt": -1,
       "published": true
     },
     {
       "displayOrder": 4,
       "_id": "5b8c3662633635082db7ae2c",
       "name": "Moderator",
+      "deletedAt": -1,
       "published": true
     }
   ],

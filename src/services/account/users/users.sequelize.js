@@ -40,8 +40,7 @@ let moduleExports = merge(
       allowNull: false
     },
     emailConfirmId: {
-      type: DataTypes.INTEGER,
-      allowNull: false
+      type: DataTypes.INTEGER
     },
     accountTypeId: {
       type: DataTypes.INTEGER,

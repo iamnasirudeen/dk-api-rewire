@@ -17,7 +17,6 @@ let schema = {
     "email",
     "password",
     "roleId",
-    "emailConfirmId",
     "accountTypeId",
     "fosta",
     "dateOfBirth"

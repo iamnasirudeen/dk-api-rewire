@@ -22,7 +22,6 @@ let base = merge(
       "email",
       "password",
       "roleId",
-      "emailConfirmId",
       "accountTypeId",
       "fosta",
       "dateOfBirth"

@@ -26,6 +26,18 @@ let moduleExports = function(app) {
   const service = app.service("forgot-password");
 
   service.hooks(hooks);
+  // !code: events
+  service.on("created", data => {
+    // Send confirmation email to the user
+    mailQueue.add("sendForgotPasswordEMail", data);
+  });
+  // send resend confirmation email
+  // eslint-disable-next-line
+  service.on("patched", data => {
+    // TODO after updating the user's password in the patch request, send an email notifying them of the password change.
+    // mailQueue.add("resendConfirmEmail", data);
+  });
+  // !end
   // !code: func_return // !end
 };
 

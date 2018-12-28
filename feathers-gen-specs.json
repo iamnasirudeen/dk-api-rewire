@@ -13,7 +13,10 @@
       "src/services/account/roles/roles.hooks.js",
       "src/services/base/api-keys/api-keys.hooks.js",
       "src/services/base/histories/histories.hooks.js",
-      "src/services/options/option-values/option-values.service.js"
+      "src/services/options/option-values/option-values.service.js",
+      "src/services/account/forgot-password/forgot-password.service.js",
+      "src/services/account/users/users.service.js",
+      "src/services/account/email-confirmation/email-confirmation.service.js"
     ],
     "ts": false
   },
